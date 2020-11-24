@@ -12,7 +12,15 @@
     Source: leetcode
  */
 
-// Solution-1
+
+
+/* 
+    Solution-1
+    Author: D-madhukar
+    TimeComplexity: O(nlogn)
+    Desc: maintain index-value as a pair(to maintain index when we sort the array) and sort value wise, then use 2 pointers technique to find indices
+
+*/ 
 class Solution {
     public int[] twoSum(int[] nums, int target) {
         class Pair implements Comparable<Pair>{
