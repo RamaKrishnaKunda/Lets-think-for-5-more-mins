@@ -11,7 +11,7 @@ class Solution {
         for(int i=1;i<=numOfSets;i++){
             List<Integer> subSet = new ArrayList<>();
             for(int j=0;j<n;j++ ) {
-                if((i>>j)&1)
+                if(((i>>j)&1)==1)
                     subSet.add(input[j]); 
             }
             Collections.sort(subSet);
