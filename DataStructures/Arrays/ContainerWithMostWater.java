@@ -13,34 +13,10 @@
 */
 
 class Solution {
-
-    public int maxArea(int[] height) {
-    	/*
-			Solution-1
-			Author: RamaKrishnaKunda
-			TimeComplexity: O(n)
-			Desc: Maintain 2 pointers high and low. Inorder to maximize the area, move pointer which is
-				  pointing to low value.
-		*/
-        int maxStore = 0;
-        int low = 0;
-        int high = height.length - 1;
-        while(low != high){
-            if((Math.abs(high - low) * (height[low] < height[high] ? height[low] : height[high])) > maxStore){
-                maxStore = Math.abs(high - low) * (height[low] < height[high] ? height[low] : height[high]);
-            }
-            if(height[low] <= height[high])
-                low++;
-            else
-                high--;
-        }
-        return maxStore;
-	}
-	
 	public int maxArea(int[] height) {
 		/*
-			Solution-2
-			Author: D-madhukar
+			Solution-1
+			Author: D-madhukar, RamaKrishnaKunda
 			TimeComplexity: O(n)
 			Desc: Maintain 2 pointers high and low. Inorder to maximize the area, move pointer which is
 				  pointing to low value.
