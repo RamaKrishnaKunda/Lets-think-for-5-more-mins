@@ -6,7 +6,7 @@
         0 <= nums.length <= 10^5
         -10^9 <= nums[i] <= 10^9
         nums is a non-decreasing array.
-        -109 <= target <= 109
+        -10^9 <= target <= 10^9
     
     Source: leetcode
 */
