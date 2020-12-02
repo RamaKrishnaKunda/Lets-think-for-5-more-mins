@@ -10,16 +10,17 @@
 */
 
 class Solution {
-    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+    public List<List<Integer>> combinationSum1(int[] candidates, int target) {
         /*
-          Author: D-madhukar
-          TimeComplexity: O(sum of n fibonaci numbers) 
-          Desc: Sort the candidates array. Find combinations for 1,2,3, 4....till target
-            example: {1,2,3,4}
-                1=> {1}
-                2=>{2},{1,1}
-                3=> {3}, {2,1},{1,1,1}
-                .....etc
+			Solution-1
+			Author: D-madhukar
+			TimeComplexity: O(sum of n fibonaci numbers) 
+			Desc: Sort the candidates array. Find combinations for 1,2,3, 4....till target
+			example: {1,2,3,4}
+			    1=> {1}
+			    2=>{2},{1,1}
+			    3=> {3}, {2,1},{1,1,1}
+			    .....etc
         */
         Map<Integer, List<List<Integer>>> combinations= new HashMap<>();
         Arrays.sort(candidates);
@@ -62,4 +63,35 @@ class Solution {
         
         return list;    
     }
+
+    public List<List<Integer>> combinationSum2(int[] nums, int target){
+    	/*
+    		Solution-2
+			Author: RamaKrishnaKunda
+			TimeComplexity: O(sum of n fibonaci numbers) 
+			Desc: Sort the candidates array. Apply DFS. For more info refer https://youtu.be/irFtGMLbf-s
+        */
+    	Arrays.sort(nums);
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> combination = new ArrayList<>();
+        findCombinationToTarget(result, combination, nums, target, 0);
+        return result;
+    }
+
+    void findCombinationToTarget(List<List<Integer>> result, List<Integer> combination, 
+                                int[] nums, int target, int startIndex){
+        if(target == 0){
+            result.add(new ArrayList<>(combination));
+            return;
+        }
+        
+        for(int i = startIndex; i < nums.length; i++){
+            if(nums[i] > target)
+                break;
+            combination.add(nums[i]);
+            findCombinationToTarget(result, combination, nums, target - nums[i], i);
+            combination.remove(combination.size() - 1);
+        }
+    }
+
 }

@@ -9,7 +9,7 @@
 class Solution {
     /*
         Solution-1
-        Author: D-madhukar, RamakrishnaKunda
+        Author: D-madhukar, RamaKrishnaKunda
         TimeComplexity: O(n)
         Desc: Solution steps
             first make all negative integers to zero as we dont need them
