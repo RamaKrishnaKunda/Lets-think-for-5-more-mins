@@ -72,4 +72,66 @@ class Solution {
         }
         return result;
     }
+
+
+    /*
+        Solution-2
+            Author: D-madhukar
+            TimeComplexity: O(m*n)
+            Desc: Loop until all elements are covered. use flag variables with(1,2,3,4 values for clockwise) and this
+            	  continues until the loop ends. Maintained 4 bounds rowLowerBound, rowUpperBound, columnLowerBound, columnUpperBound
+    */
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> result = new ArrayList<>();
+        if(matrix.length==0)
+            return result;
+        int xlBound=-1;
+        int ylBound= -1;
+        int xuBound=matrix.length;
+        int yuBound= matrix[0].length;
+        int i=0, j=0;
+        int flag=1;
+        int count=0;
+        while(count<(matrix.length*matrix[0].length) ){
+            if(flag!=0) {
+                result.add(matrix[i][j]);
+                count++;
+            }
+            else 
+                flag=1;
+            if(flag==1){
+                j++;
+                if(j>=yuBound){
+                    j--;
+                    flag++;
+                    xlBound++;
+                }
+            } 
+            if(flag==2){
+                i++;
+                if(i>=xuBound){
+                    i--;
+                    flag++;
+                    yuBound--;
+                }
+            }
+            if(flag==3){
+                j--;
+                if(j<=ylBound){
+                    j++;
+                    flag++;
+                    xuBound--;
+                }
+            } 
+            if(flag==4){
+                i--;
+                if(i<=xlBound){
+                    i++;
+                    flag=0;
+                    ylBound++;
+                }
+            }
+        }
+        return result;
+    }
 }
