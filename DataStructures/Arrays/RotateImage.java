@@ -11,7 +11,7 @@
 class Solution {
     /*
         Solution-1
-        Author: D-madhukar
+        Author: D-madhukar, RamaKrishnaKunda
         TimeComplexity: O(n*n)
         Desc: Transpose the matrix then reverse each row 
     */
