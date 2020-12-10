@@ -1,11 +1,19 @@
 /* 
-    Q: Given an array with random integers.Rotate the array k times in clockwise direction
+    Q:  Given an array with random integers.Rotate the array k times in clockwise direction.
+
+    Constraints:
+        1 <= nums.length <= 2 * 10^4
+        -2^31 <= nums[i] <= 2^31 - 1
+        0 <= k <= 10^5
+
+    Source: leetcode
+
 */
 
 class Solution {
     /*
         Solution-1:
-        Author: D-madhukar
+        Author: D-madhukar, RamaKrishnaKunda
         TimeComplexity: O(n)
         Desc: It can be done in 3 reverse operations . 
     */
