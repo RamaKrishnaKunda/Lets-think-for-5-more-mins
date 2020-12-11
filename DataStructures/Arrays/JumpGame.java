@@ -7,6 +7,8 @@
         1 <= nums.length <= 3 * 10^4
         0 <= nums[i][j] <= 10^5
 
+    Source: leetcode
+
 */
 
 class Solution {
@@ -16,7 +18,7 @@ class Solution {
         TimeComplexity: O(n)
         Desc: Maintain pj where pj[i] represents a jump is possible to reach last index. Start from end to beginning
     */
-    public boolean canJump(int[] nums) {
+    public boolean canJump1(int[] nums) {
         if(nums.length==1)
             return true;
         int n= nums.length;
@@ -34,5 +36,27 @@ class Solution {
             }                
         }
         return pj[0];
+    }
+
+    /*
+    	Solution-2
+    	Author: RamaKrishnaKunda
+    	TimeComplexity: O(n)
+    	Desc: Maintain a variable minJumps initialized to 1. Iterating from the end, if any element is 0 or less than
+    		  minJumps, increment minJumps. If any element is greater than or equal to minJumps, assign minJumps to 1.
+    		  After going through all the elements if minJumps is 1 return true else return false.
+    */
+    public boolean canJump2(int[] nums) {
+        int minJumps = 1;
+        for(int i = nums.length - 2; i >=0; i--){
+            if(nums[i] == 0 || nums[i] < minJumps)
+                minJumps++;
+            else if(nums[i] >= minJumps)
+                minJumps = 1;
+        }
+        if(minJumps == 1)
+            return true;
+        else
+            return false;
     }
 }
