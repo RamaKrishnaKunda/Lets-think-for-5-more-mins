@@ -50,7 +50,7 @@ class Solution {
     	/*
     		Solution-2
 		    Author: RamaKrishnaKunda
-		    TimeComplexity: O(n^2)
+		    TimeComplexity: O(n^3)
 		    Desc: Take two pointers one from start and end. Each time check the subString from start and end
 		    	  is a palindrome or not. Break the loops when necessary.
     	*/
