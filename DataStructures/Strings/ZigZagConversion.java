@@ -16,13 +16,13 @@
         1 <= numRows <= 1000
 */
 class Solution {
-    /*
-        Solution-1
-        Author: D-madhukar
-        TimeComplexity: O(s.length)
-        Desc: Use 2d array of size (s.length)*(s.length)
-    */
-    public String convert(String s, int numRows) {
+    public String convert1(String s, int numRows) {
+        /*
+            Solution-1
+            Author: D-madhukar
+            TimeComplexity: O(s.length)
+            Desc: Use 2d array of size (s.length)*(s.length)
+        */
         int n=s.length();
         if(n==1 || numRows==1)
             return s;
@@ -56,5 +56,83 @@ class Solution {
             }
         }
         return new String(result);
+    }
+    public String convert(String s, int numRows) {
+        /*
+            Solution-1
+            Author: D-madhukar
+            TimeComplexity: O(n)
+            Desc: Start whih 1 and loop upto numRows. The difference between indicies form a pattern. The pattern
+            for numRows = 6(even) looks like 2n-2, (2n-4, 2), (2n-6, 4), (2n-6, 4), (2n-4, 2), 2n-2. The pattern
+            for numRows = 5(odd) looks like 2n-2, (2n-2, 2), 2n-6, (2, 2n-2), 2n-2.
+        */
+        if(s.length() <= numRows || numRows == 1)
+            return s;
+        
+        List<Integer> difference = new ArrayList<>();
+        String result = "";
+        int base = 2;
+        for(int i = 0; i < numRows; i++){
+            if(i >= numRows / 2){
+                if(numRows % 2 == 0)
+                    base -= 2;
+                difference.add(base);
+                if(numRows % 2 != 0)
+                    base -= 2;
+                continue;
+            }
+            difference.add(base);
+            base += 2;
+        }
+        List<Integer> subDifference = new ArrayList<>();
+        int subDiff = 0;
+        for(int i = 0; i < numRows / 2; i++){
+            subDifference.add(subDiff);
+            subDiff += 2;
+        }
+        if(numRows%2 != 0){
+            int index = numRows / 2;
+            subDifference.add(index, 0);
+        }
+        for(int i = numRows / 2; i < numRows; i++){
+            subDifference.add(i, -subDifference.get(numRows - i - 1));
+        }
+        for(int i = 1; i <= numRows; i++){
+            int index = i;
+            subDiff = subDifference.get(i - 1);
+            boolean jump = true;
+            if(subDiff < 0)
+                jump = false;
+            int diff = (2*numRows) - difference.get(i - 1);
+            while(index <= s.length()){
+                if(subDiff == 0){
+                    result += s.charAt(index - 1);
+                    index += diff;
+                }
+                if(subDiff > 0){
+                    result += s.charAt(index - 1);
+                    if(jump == true){
+                        index += diff;
+                        jump = false;
+                    }
+                    else{
+                        index += subDiff;
+                        jump = true;
+                    }
+                }
+                if(subDiff < 0){
+                    result += s.charAt(index - 1);
+                    if(jump == true){
+                        index += diff;
+                        jump = false;
+                    }
+                    else{
+                        index -= subDiff;
+                        jump = true;
+                    }
+                }
+            }
+        }
+        return result;
     }
 }
