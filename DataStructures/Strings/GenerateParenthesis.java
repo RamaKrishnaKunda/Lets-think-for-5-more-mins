@@ -8,10 +8,10 @@ class Solution {
     /*
         Solution-1
         Author: D-madhukar
-        TimeComplexity: 2^n
+        TimeComplexity: 2^(2n)
         Desc: Use binary format from minnum to maxnum. 0 represents '(' and 1 represents ')'. Check if number in binary format is forming valid parenthesis or not 
     */
-    public List<String> generateParenthesis(int n) {
+    public List<String> generateParenthesis1(int n) {
         List<String> res = new ArrayList<>();
         if(n==1){
             res.add("()");
@@ -55,6 +55,30 @@ class Solution {
             }
         }
         return stack.isEmpty();
+    }
+
+    public List<String> generateParenthesis2(int n) {
+    	/*
+    		Solution-2
+			Author: RamaKrishnaKunda
+			TimeComplexity: 2^(2n)
+			Desc: Use DFS algorithm. Initialize open and close to 0. They will go upto n. Add ( until open is
+			less than n. Once done until close is less tha open, append ). Perform this in recurssive fassion.
+    	*/
+        List<String> result = new ArrayList<>();
+        generateParenthesis(result, "",  n, 0, 0);
+        return result;
+    }
+
+    public void generateParenthesis(List<String> result, String comb, int max, int open, int close){
+        if(comb.length() == max * 2){
+            result.add(comb);
+            return;
+        }
+        if(open < max)
+            generateParenthesis(result, comb + "(", max, open + 1, close);
+        if(close < open)
+            generateParenthesis(result, comb + ")", max, open, close + 1);
     }
 }
 
